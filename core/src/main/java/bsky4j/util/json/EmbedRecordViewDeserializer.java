@@ -1,9 +1,5 @@
 package bsky4j.util.json;
 
-import bsky4j.model.bsky.embed.EmbedRecordViewBlocked;
-import bsky4j.model.bsky.embed.EmbedRecordViewNotFound;
-import bsky4j.model.bsky.embed.EmbedRecordViewRecord;
-import bsky4j.model.bsky.embed.EmbedRecordViewUnion;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -12,6 +8,12 @@ import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+
+import bsky4j.model.bsky.embed.EmbedRecordViewBlocked;
+import bsky4j.model.bsky.embed.EmbedRecordViewNotFound;
+import bsky4j.model.bsky.embed.EmbedRecordViewRecord;
+import bsky4j.model.bsky.embed.EmbedRecordViewUnion;
+import bsky4j.model.bsky.feed.FeedDefsGeneratorView;
 
 public class EmbedRecordViewDeserializer implements JsonDeserializer<EmbedRecordViewUnion> {
 
@@ -28,6 +30,11 @@ public class EmbedRecordViewDeserializer implements JsonDeserializer<EmbedRecord
         if (type != null) {
             if (type.getAsString().equals(EmbedRecordViewRecord.TYPE)) {
                 return context.deserialize(obj, new TypeToken<EmbedRecordViewRecord>() {
+                }.getType());
+            }
+
+            if (type.getAsString().equals(FeedDefsGeneratorView.TYPE)) {
+                return context.deserialize(obj, new TypeToken<FeedDefsGeneratorView>() {
                 }.getType());
             }
 

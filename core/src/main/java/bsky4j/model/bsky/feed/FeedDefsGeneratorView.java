@@ -1,11 +1,20 @@
 package bsky4j.model.bsky.feed;
 
-import bsky4j.model.bsky.actor.ActorDefsProfileView;
-import bsky4j.model.bsky.richtext.RichtextFacet;
-
 import java.util.List;
 
-public class FeedDefsGeneratorView {
+import bsky4j.BlueskyTypes;
+import bsky4j.model.bsky.actor.ActorDefsProfileView;
+import bsky4j.model.bsky.embed.EmbedRecordViewUnion;
+import bsky4j.model.bsky.richtext.RichtextFacet;
+
+public class FeedDefsGeneratorView implements EmbedRecordViewUnion {
+
+    public static final String TYPE = BlueskyTypes.FeedDefs + "#generatorView";
+
+    @Override
+    public String getType() {
+        return TYPE;
+    }
 
     private String uri;
     private String cid;
