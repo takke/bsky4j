@@ -31,6 +31,8 @@ import bsky4j.api.entity.bsky.feed.FeedPostRequest;
 import bsky4j.api.entity.bsky.feed.FeedPostResponse;
 import bsky4j.api.entity.bsky.feed.FeedRepostRequest;
 import bsky4j.api.entity.bsky.feed.FeedRepostResponse;
+import bsky4j.api.entity.bsky.feed.FeedSearchPostsRequest;
+import bsky4j.api.entity.bsky.feed.FeedSearchPostsResponse;
 import bsky4j.api.entity.share.Response;
 
 /**
@@ -68,6 +70,11 @@ public interface FeedResource {
      * A view of the user's home timeline.
      */
     Response<FeedGetTimelineResponse> getTimeline(FeedGetTimelineRequest request);
+
+    /**
+     * Search for posts.
+     */
+    Response<FeedSearchPostsResponse> searchPosts(FeedSearchPostsRequest request);
 
     /**
      * Compose and hydrate a feed from a user's selected feed generator.

@@ -42,6 +42,8 @@ import bsky4j.api.entity.bsky.feed.FeedPostRequest;
 import bsky4j.api.entity.bsky.feed.FeedPostResponse;
 import bsky4j.api.entity.bsky.feed.FeedRepostRequest;
 import bsky4j.api.entity.bsky.feed.FeedRepostResponse;
+import bsky4j.api.entity.bsky.feed.FeedSearchPostsRequest;
+import bsky4j.api.entity.bsky.feed.FeedSearchPostsResponse;
 import bsky4j.api.entity.share.Response;
 
 public class _FeedResource implements FeedResource {
@@ -160,6 +162,23 @@ public class _FeedResource implements FeedResource {
             return builder.get();
         });
     }
+
+    @Override
+    public Response<FeedSearchPostsResponse> searchPosts(FeedSearchPostsRequest request) {
+        return proceed(FeedSearchPostsResponse.class, () -> {
+
+            HttpRequestBuilder builder =
+                    new HttpRequestBuilder()
+                            .target(xrpc(this.uri))
+                            .path(BlueskyTypes.FeedSearchPosts)
+                            .header("Authorization", request.getBearerToken())
+                            .request(HttpMediaType.APPLICATION_JSON);
+
+            request.toMap().forEach(builder::param);
+            return builder.get();
+        });
+    }
+
 
     @Override
     public Response<FeedGetFeedResponse> getFeed(
