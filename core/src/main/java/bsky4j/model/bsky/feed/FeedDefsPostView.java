@@ -1,5 +1,7 @@
 package bsky4j.model.bsky.feed;
 
+import javax.annotation.Nullable;
+
 import bsky4j.model.bsky.actor.ActorDefsProfileViewBasic;
 import bsky4j.model.bsky.embed.EmbedViewUnion;
 import bsky4j.model.share.RecordUnion;
@@ -15,6 +17,8 @@ public class FeedDefsPostView {
     private Integer repostCount;
     private Integer likeCount;
     private String indexedAt;
+
+    @Nullable
     private FeedDefsViewerState viewer;
 
     // region
@@ -90,11 +94,12 @@ public class FeedDefsPostView {
         this.indexedAt = indexedAt;
     }
 
+    @Nullable
     public FeedDefsViewerState getViewer() {
         return viewer;
     }
 
-    public void setViewer(FeedDefsViewerState viewer) {
+    public void setViewer(@Nullable FeedDefsViewerState viewer) {
         this.viewer = viewer;
     }
     // endregion
